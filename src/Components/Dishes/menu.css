@@ -4,6 +4,7 @@
   justify-content: space-between;
   align-items: center;
   margin: 20px;
+   
 }
 
 .product-card {
@@ -59,3 +60,4 @@
 .btn-addtocart:hover {
   background-color: #3e8e41;
 }
+
