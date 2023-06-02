@@ -6,6 +6,8 @@ import * as serviceWorker from "./serviceWorker";
 import { Auth0Provider } from "@auth0/auth0-react";
 import history from "./utils/history";
 import { getConfig } from "./config";
+import "bootstrap/dist/css/bootstrap.min.css"
+import { BrowserRouter } from "react-router-dom/cjs/react-router-dom.min";
 
 const onRedirectCallback = (appState) => {
   history.push(
@@ -29,7 +31,9 @@ const providerConfig = {
 
 ReactDOM.render(
   <Auth0Provider {...providerConfig}>
+    <BrowserRouter>
     <App />
+    </BrowserRouter>    
   </Auth0Provider>,
   document.getElementById("root")
 );
