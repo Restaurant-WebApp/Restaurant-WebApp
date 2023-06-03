@@ -40,8 +40,8 @@ const App = () => {
   const addToCart = (product) => {
     const item = {
       productId: product.productId,
-      productName: product.name,
-      productImageUrl: product.imageUrl,
+      productName: product.productName,
+      productImageUrl: product.productImageUrl,
       price: product.price,
     };
     setCartItems([...cartItems, item]);
@@ -61,7 +61,6 @@ const App = () => {
             <Route path="/reservation" component={Reservation}/>
             <Route path="/review" component={Review}/>
             <Route path="/cart" render={() => <Cart cartItems={cartItems} />} />
-
           </Switch>
         </Container>
         <Footer />

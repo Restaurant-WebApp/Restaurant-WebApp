@@ -22,7 +22,7 @@ const Menu = ({ addToCart }) => {
   }, []);
   
   const handleAddToCart = (product) => {
-    addToCart([...cartItems, product]);
+    addToCart(product);
     setCartItems([...cartItems, product]); // Update the cartItems state
   };
   
