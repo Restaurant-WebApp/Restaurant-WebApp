@@ -225,7 +225,7 @@ const NavBar = () => {
                   right: 0,
                   transform: "translate(25%, 25%)",
                 }}>
-
+                  <p>0</p>
               </div>
               </Button>  
               </NavLink>   

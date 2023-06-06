@@ -22,7 +22,7 @@ const CartItem = ({ item }) => {
         className={classes.cartItemImage}
       />
       <div className={classes.cartItemDetails}>
-        <h3 className={classes.productName}>{item.productName}</h3>
+        <h4 className={classes.productName}>{item.productName} </h4>
         <div className={classes.quantityContainer}>
           <button
             className={classes.quantityButton}

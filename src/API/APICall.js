@@ -13,3 +13,18 @@ export const fetchData = async () => {
     throw new Error("Failed to fetch data");
   }
 };
+
+export const CheckoutCart = async (CheckoutHeader) =>{
+  try{
+    // Make a POST request to your API endpoint with the cart items
+    const response = await axios.post("https://example.com/api/checkout", {
+      CheckoutHeader,
+    });
+
+    // Handle the response as needed
+    console.log(response.data);
+  }
+  catch(error){
+    console.error(error);
+  }
+}
