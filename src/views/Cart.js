@@ -45,14 +45,29 @@ const Cart = ({ cartItems }) => {
   };
 
   const handleCheckout = () => {
-    const cartItemDetails = items.map((item) => ({
+    const cartHeader = {
+      cartHeaderId: 0,
+      userId: null,
+    };
+  
+    const cartDetails = items.map((item) => ({
+      cartDetailsId: 0,
+      cartHeaderId: 0,
+      cartHeader: cartHeader,
       productId: item.productId,
-      productName: item.productName,
-      quantity: item.quantity,
-      
+      product: {
+        productId: item.productId,
+        productName: item.productName,
+        price: item.price,
+        productDescription: item.productDescription,
+        productCategory: item.productCategory,
+        productImageUrl: item.productImageUrl,
+      },
+      count: item.quantity,
     }));
+  
     const checkoutHeader = {
-      cartHeaderId: null,
+      cartHeaderId: 0,
       userId: null,
       orderTotal: totalPrice.toFixed(2),
       firstName: firstName,
@@ -61,13 +76,16 @@ const Cart = ({ cartItems }) => {
       email: email,
       cardNumber: null,
       cvv: null,
-      cartTotalItems: null,
+      cartTotalItems: items.length,
       dateTime: dateTime,
-      cartDetails: cartItemDetails,
+      cartDetails: cartDetails,
     };
-    console.log(checkoutHeader);
+  
+    //console.log(checkoutHeader);
     CheckoutCart(checkoutHeader);
   };
+  
+  
 
   const totalPrice = items.reduce((total, item) => total + item.price * item.quantity, 0);
 
@@ -75,9 +93,9 @@ const Cart = ({ cartItems }) => {
     <>
     <div className={styleClass.container}>
       <div className={styleClass.cartItems}>
-        {items.map((item) => (
+        {items.map((item, index) => (
           <CartItem
-            key={item.productId}
+            key={`${item.productId}-${index}`}
             item={item}
             onAddToCart={handleAddToCart}
             onRemoveFromCart={handleRemoveFromCart}

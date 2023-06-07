@@ -16,10 +16,13 @@ export const fetchData = async () => {
 
 export const CheckoutCart = async (CheckoutHeader) =>{
   try{
+    //console.log(CheckoutHeader);
     // Make a POST request to your API endpoint with the cart items
-    const response = await axios.post("https://example.com/api/checkout", {
+    const response = await axios.post("https://localhost:44393/checkout", {
       CheckoutHeader,
-    });
+    },{headers: {
+      'Content-Type': 'application/json',
+    },});
 
     // Handle the response as needed
     console.log(response.data);
