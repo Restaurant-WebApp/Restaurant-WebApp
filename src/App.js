@@ -16,7 +16,8 @@ import Order from "./views/Order";
 import Reservation from "./views/Reservation";
 import Review from "./views/Review";
 import Cart from "./views/Cart"
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // styles
 import "./App.css";
 
@@ -64,6 +65,7 @@ const App = () => {
           </Switch>
         </Container>
         <Footer />
+        <ToastContainer/>
       </div>
     </Router>
   );

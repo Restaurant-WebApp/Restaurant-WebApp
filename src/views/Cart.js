@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import CartItem from "../components/CartItem";
 import { CheckoutCart } from "../API/APICall";
 import styleClass from "./Cart.module.css";
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
 
 const Cart = ({ cartItems }) => {
   const [items, setItems] = useState([]);
@@ -44,7 +47,7 @@ const Cart = ({ cartItems }) => {
     }
   };
 
-  const handleCheckout = () => {
+  const handleCheckout = async() => {
     const cartHeader = {
       cartHeaderId: 0,
       userId: null,
@@ -80,9 +83,24 @@ const Cart = ({ cartItems }) => {
       dateTime: dateTime,
       cartDetails: cartDetails,
     };
+    try {
+      const response = await CheckoutCart(checkoutHeader);
+      console.log(response);
   
-    //console.log(checkoutHeader);
-    CheckoutCart(checkoutHeader);
+      if (response && response.isSuccess) {
+        console.log('Success');
+        toast.success('Your order has been successfully placed. Thank you!!');
+      } else if (response && response.displayMessage) {
+        console.log('Failure');
+        toast.error(response.displayMessage);
+      } else {
+        console.log('Failure');
+        toast.error('Failed to place the order. Please try again.');
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error('An error occurred while placing the order. Please try again.');
+    }
   };
   
   
@@ -168,6 +186,7 @@ const Cart = ({ cartItems }) => {
     <button className={styleClass.formButton} onClick={handleCheckout}>
      Proceed to Checkout
    </button>
+   <ToastContainer/>
     </>
     
   );
