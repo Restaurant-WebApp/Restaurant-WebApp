@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const fetchData = async () => {
   try {
-    const response = await axios.get("https://localhost:44379/products");
+    const response = await axios.get("http://35.233.78.152/gateway/products");
     if (response.data.isSuccess) {
       return response.data.result;
     } else {
@@ -14,17 +14,18 @@ export const fetchData = async () => {
   }
 };
 
-export const CheckoutCart = async (CheckoutHeader) =>{
-  try{
+export const CheckoutCart = async (CheckoutHeader) => {
+  try {
     console.log(CheckoutHeader);
-    // Make a POST request to your API endpoint with the cart items
-    const response = await axios.post("https://localhost:44393/checkout", CheckoutHeader,{headers: {
-      'Content-Type': 'application/json',
-    },});
+    const response = await axios.post("http://35.233.78.152/gateway/checkout", CheckoutHeader, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:3000' // Add this header
+      }
+    });
 
     return response.data;
-  }
-  catch(error){
+  } catch (error) {
     console.error(error);
   }
-}
+};
